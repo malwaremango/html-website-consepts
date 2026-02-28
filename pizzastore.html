@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pizzahjørnet – Ekte vedfyrt pizza i nabolaget</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --red: #b22222;
+      --dark: #2d1a12;
+      --warm: #4a2c1f;
+      --beige: #f5e8d3;
+      --text: #3c2a1f;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--beige);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+      color: var(--dark);
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    header {
+      background: var(--dark);
+      color: white;
+      padding: 1.5rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 2.1rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      margin-left: 1.8rem;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #ffcc99;
+    }
+
+    .hero {
+      background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.65)),
+                  url('https://thumbs.dreamstime.com/b/modern-pizza-restaurant-interior-wood-fired-brick-oven-hearth-glows-warm-cozy-wooden-tables-dark-chairs-ready-guests-407679456.jpg') center/cover no-repeat;
+      height: 85vh;
+      min-height: 600px;
+      color: white;
+      display: flex;
+      align-items: center;
+      text-align: center;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: 4.2rem;
+      margin-bottom: 1rem;
+      text-shadow: 0 3px 12px rgba(0,0,0,0.7);
+    }
+
+    .hero p {
+      font-size: 1.5rem;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--red);
+      color: white;
+      padding: 1rem 2.5rem;
+      font-size: 1.2rem;
+      font-weight: 500;
+      text-decoration: none;
+      border-radius: 50px;
+      transition: all 0.3s;
+      box-shadow: 0 4px 15px rgba(178,34,34,0.4);
+    }
+
+    .btn:hover {
+      background: #d32f2f;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(178,34,34,0.5);
+    }
+
+    section {
+      padding: 5rem 0;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 3rem;
+      margin-bottom: 3rem;
+      color: var(--warm);
+    }
+
+    .pizzas {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .pizza-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+      transition: transform 0.3s;
+    }
+
+    .pizza-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .pizza-card img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+    }
+
+    .pizza-info {
+      padding: 1.8rem;
+      text-align: center;
+    }
+
+    .pizza-info h3 {
+      font-size: 1.6rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .price {
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: var(--red);
+      margin: 1rem 0;
+    }
+
+    footer {
+      background: var(--dark);
+      color: #ccc;
+      text-align: center;
+      padding: 3rem 0;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 3rem; }
+      .nav-links a { margin-left: 1rem; font-size: 0.95rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">Pizzahjørnet</div>
+        <div class="nav-links">
+          <a href="#">Hjem</a>
+          <a href="#meny">Meny</a>
+          <a href="#">Åpningstider</a>
+          <a href="#">Kontakt</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Velkommen til Pizzahjørnet</h1>
+      <p>Ekte vedfyrt pizza – akkurat som i Italia, men rett rundt hjørnet</p>
+      <a href="#meny" class="btn">Se menyen</a>
+    </div>
+  </section>
+
+  <section id="meny">
+    <div class="container">
+      <h2>Våre favoritter akkurat nå</h2>
+
+      <div class="pizzas">
+
+        <div class="pizza-card">
+          <img src="https://thumbs.dreamstime.com/b/delicious-pizza-topped-cheese-pepperoni-fresh-basil-served-wooden-board-vibrant-colors-textures-create-appetizing-359939625.jpg" alt="Pepperoni classico">
+          <div class="pizza-info">
+            <h3>Pepperoni Classico</h3>
+            <p>Tomatsaus, mozzarella, ekte pepperoni, fersk basilikum</p>
+            <div class="price">189,-</div>
+            <a href="tel:22002200" class="btn">Bestill nå</a>
+          </div>
+        </div>
+
+        <div class="pizza-card">
+          <img src="https://thumbs.dreamstime.com/b/delicious-pepperoni-pizza-melted-mozzarella-fresh-basil-wooden-board-surrounded-bowls-ingredients-like-413732975.jpg" alt="Margherita">
+          <div class="pizza-info">
+            <h3>Margherita Extra</h3>
+            <p>San Marzano tomater, buffalo mozzarella, basilikum, olivenolje</p>
+            <div class="price">169,-</div>
+            <a href="tel:22002200" class="btn">Bestill nå</a>
+          </div>
+        </div>
+
+        <div class="pizza-card">
+          <img src="http://static1.squarespace.com/static/5d49cc571c9fd0000118c628/61a8d73edbe0c57bcdd1c5d4/66689f4527f8af0991dd1ee2/1718743581923/tinderhearthsummer23_lr-63.jpg?format=1500w" alt="Vegetar med grønnsaker">
+          <div class="pizza-info">
+            <h3>Grønn & God</h3>
+            <p>Pesto, mozzarella, ruccola, cherrytomater, parmesan, pinjekjerner</p>
+            <div class="price">179,-</div>
+            <a href="tel:22002200" class="btn">Bestill nå</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>Pizzahjørnet &copy; 2026 • Storgata 42, 0155 Oslo • Åpent man–lør 15–22 • Søndag 14–21</p>
+      <p>Telefon: 22 00 22 00 • post@pizzahjornet.no</p>
+    </div>
+  </footer>
+
+</body>
+</html>
