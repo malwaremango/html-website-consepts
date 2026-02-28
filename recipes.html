@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Verden på Tallerkenen – Internasjonale Oppskrifter</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary: #c0392b;     /* Rød for mat/appetitt */
+      --accent: #e67e22;      /* Oransje for energi */
+      --dark: #2c3e50;
+      --light: #ecf0f1;
+      --gray: #7f8c8d;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--light);
+      color: var(--dark);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    header {
+      background: var(--dark);
+      color: white;
+      padding: 4rem 0 3rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 3.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      font-size: 1.3rem;
+      opacity: 0.9;
+    }
+
+    .difficulty-filters {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 2.5rem 0;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 0.8rem 1.8rem;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s;
+      background: white;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(192,57,43,0.3);
+    }
+
+    .recipes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 2.5rem;
+      margin: 3rem 0;
+    }
+
+    .recipe-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .recipe-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(192,57,43,0.15);
+    }
+
+    .recipe-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .recipe-content {
+      padding: 1.8rem;
+    }
+
+    .difficulty {
+      display: inline-block;
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .easy   { background: #27ae60; color: white; }
+    .medium { background: #f39c12; color: white; }
+    .hard   { background: #c0392b; color: white; }
+
+    .recipe-title {
+      font-size: 1.6rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .recipe-meta {
+      color: var(--gray);
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+
+    .recipe-desc {
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 0.8rem 1.8rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s;
+    }
+
+    .btn:hover {
+      background: #a93226;
+      transform: translateY(-3px);
+    }
+
+    footer {
+      background: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 3rem 0;
+      margin-top: 4rem;
+    }
+
+    @media (max-width: 768px) {
+      header h1 { font-size: 2.8rem; }
+      .recipes-grid { gap: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <h1>Verden på Tallerkenen</h1>
+      <p>Internasjonale favoritter – sortert etter vanskelighetsgrad</p>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="difficulty-filters">
+      <button class="filter-btn active" data-level="all">Alle</button>
+      <button class="filter-btn" data-level="easy">Lett</button>
+      <button class="filter-btn" data-level="medium">Middels</button>
+      <button class="filter-btn" data-level="hard">Vanskelig</button>
+    </div>
+
+    <div class="recipes-grid">
+
+      <!-- Lett (Easy) -->
+      <div class="recipe-card" data-level="easy">
+        <img class="recipe-img" src="https://www.allrecipes.com/thmb/HAV1s7OKAgNRGF0vRbt11CQMujs=/0x512/filters:no_upscale():max_bytes(150000):strip_icc()/245775-spaghetti-alla-carbonara-the-traditional-italian-recipe-DDMFS-4x3-879c32ee3cfb463582e3e6230e311029.jpg" alt="Spaghetti Carbonara">
+        <div class="recipe-content">
+          <span class="difficulty easy">Lett</span>
+          <h3 class="recipe-title">Italiensk Spaghetti Carbonara</h3>
+          <div class="recipe-meta">Italia • 20 min • 4 porsjoner</div>
+          <p class="recipe-desc">Klassisk kremet pasta med egg, pecorino, guanciale og sort pepper – enkel, men utrolig god.</p>
+          <a href="#" class="btn">Se oppskrift</a>
+        </div>
+      </div>
+
+      <div class="recipe-card" data-level="easy">
+        <img class="recipe-img" src="https://thumbs.dreamstime.com/b/fresh-colorful-japanese-sushi-platter-delicious-assortment-beautifully-arranged-traditional-bamboo-mat-vibrant-407920423.jpg" alt="Sushi">
+        <div class="recipe-content">
+          <span class="difficulty easy">Lett</span>
+          <h3 class="recipe-title">Hjemmelaget California Roll Sushi</h3>
+          <div class="recipe-meta">Japan • 30 min • 4 porsjoner</div>
+          <p class="recipe-desc">Ruller med krabbe, agurk, avocado og sesam – perfekt nybegynner-sushi uten rå fisk.</p>
+          <a href="#" class="btn">Se oppskrift</a>
+        </div>
+      </div>
+
+      <div class="recipe-card" data-level="easy">
+        <img class="recipe-img" src="https://res.cloudinary.com/hellochef/image/upload/c_fit/q_auto/dpr_auto/yqslixswe09pop9nggfm?_a=E" alt="Butter Chicken">
+        <div class="recipe-content">
+          <span class="difficulty easy">Lett</span>
+          <h3 class="recipe-title">Indisk Butter Chicken</h3>
+          <div class="recipe-meta">India • 40 min • 4 porsjoner</div>
+          <p class="recipe-desc">Kremet kyllingcurry med tomat, smør og garam masala – server med ris og naan.</p>
+          <a href="#" class="btn">Se oppskrift</a>
+        </div>
+      </div>
+
+      <!-- Middels (Medium) -->
+      <div class="recipe-card" data-level="medium">
+        <img class="recipe-img" src="https://cdn.shopify.com/s/files/1/0577/2260/1519/files/pasta-carbonara-1_1024x1024.jpg?v=1686228806" alt="Authentic Carbonara">
+        <div class="recipe-content">
+          <span class="difficulty medium">Middels</span>
+          <h3 class="recipe-title">Authentisk Pasta alla Carbonara</h3>
+          <div class="recipe-meta">Italia • 25 min • 4 porsjoner</div>
+          <p class="recipe-desc">Tradisjonell romersk versjon uten fløte – kun egg, ost, guanciale og pepper.</p>
+          <a href="#" class="btn">Se oppskrift</a>
+        </div>
+      </div>
+
+      <div class="recipe-card" data-level="medium">
+        <img class="recipe-img" src="https://thumbs.dreamstime.com/b/assorted-fresh-sushi-platter-colorful-sunset-view-japanese-cuisine-seafood-nigiri-sashimi-assorted-fresh-sushi-platter-315186809.jpg" alt="Sushi Platter">
+        <div class="recipe-content">
+          <span class="difficulty medium">Middels</span>
+          <h3 class="recipe-title">Nigiri & Maki Sushi Assortment</h3>
+          <div class="recipe-meta">Japan • 60 min • 6 porsjoner</div>
+          <p class="recipe-desc">Håndlagde nigiri med rå fisk og maki-ruller – krever litt øvelse.</p>
+          <a href="#" class="btn">Se oppskrift</a>
+        </div>
+      </div>
+
+      <div class="recipe-card" data-level="medium">
+        <img class="recipe-img" src="https://kitchenlabo.com/wp-content/uploads/2020/04/indian-butter-chicken-with-jasmine-rice-and-naan-bread-Kitchenlab-825x658.jpg" alt="Butter Chicken">
+        <div class="recipe-content">
+          <span class="difficulty medium">Middels</span>
+          <h3 class="recipe-title">Tradisjonell Indisk Butter Chicken fra bunnen</h3>
+          <div class="recipe-meta">India • 90 min • 6 porsjoner</div>
+          <p class="recipe-desc">Marinert kylling i yoghurtsaus, langsomt kokt med krydder og smør – autentisk smak.</p>
+          <a href="#" class="btn">Se oppskrift</a>
+        </div>
+      </div>
+
+      <!-- Vanskelig (Hard) -->
+      <div class="recipe-card" data-level="hard">
+        <img class="recipe-img" src="https://www.seriouseats.com/thmb/1r4b3x2t6O2f3m3O2vY2Kz2z2z2=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/hand-pulled-lamian-noodles-2023-675-2-2-675-2-675.jpg" alt="Hand-Pulled Lamian Noodles">
+        <div class="recipe-content">
+          <span class="difficulty hard">Vanskelig</span>
+          <h3 class="recipe-title">Håndtrukne Lamian Nudler (Kinesisk)</h3>
+          <div class="recipe-meta">Kina • 120 min + hvile • 4 porsjoner</div>
+          <p class="recipe-desc">Klassisk nord-kinesisk teknikk – strekk deigen til tynne nudler uten å kutte.</p>
+          <a href="#" class="btn">Se oppskrift</a>
+        </div>
+      </div>
+
+      <div class="recipe-card" data-level="hard">
+        <img class="recipe-img" src="https://www.seriouseats.com/thmb/1r4b3x2t6O2f3m3O2vY2Kz2z2z2=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/creme-brulee-2023-675-2-675.jpg" alt="Crème Brûlée">
+        <div class="recipe-content">
+          <span class="difficulty hard">Vanskelig</span>
+          <h3 class="recipe-title">Fransk Crème Brûlée</h3>
+          <div class="recipe-meta">Frankrike • 60 min + avkjøling • 6 porsjoner</div>
+          <p class="recipe-desc">Silkemyk vaniljekrem med perfekt karamellisert sukker-topp – presisjon kreves.</p>
+          <a href="#" class="btn">Se oppskrift</a>
+        </div>
+      </div>
+
+      <div class="recipe-card" data-level="hard">
+        <img class="recipe-img" src="https://www.seriouseats.com/thmb/1r4b3x2t6O2f3m3O2vY2Kz2z2z2=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/arroz-con-gandules-2023-675-2-675.jpg" alt="Arroz con Gandules">
+        <div class="recipe-content">
+          <span class="difficulty hard">Vanskelig</span>
+          <h3 class="recipe-title">Puerto Ricansk Arroz con Gandules</h3>
+          <div class="recipe-meta">Puerto Rico • 90 min • 8 porsjoner</div>
+          <p class="recipe-desc">Nasjonalrett med sofrito, pigeon peas og perfekt ris – sofrito fra bunnen er nøkkelen.</p>
+          <a href="#" class="btn">Se oppskrift</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 Verden på Tallerkenen – Utforsk mat fra hele verden</p>
+    </div>
+  </footer>
+
+  <script>
+    // Enkel filter-funksjon
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.recipe-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const level = btn.dataset.level;
+
+        cards.forEach(card => {
+          if (level === 'all' || card.dataset.level === level) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
